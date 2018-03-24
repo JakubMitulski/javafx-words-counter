@@ -17,7 +17,7 @@
                     <MenuItem text="Read from file" onAction="#readFromFile"/>
                     <MenuItem text="Save to file" onAction="#saveToFile"/>
                     <SeparatorMenuItem/>
-                    <MenuItem text="Exit"/>
+                    <MenuItem text="Exit" onAction="#exit"/>
                 </items>
             </Menu>
         </MenuBar>
