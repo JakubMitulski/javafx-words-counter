@@ -1,6 +1,5 @@
 package pl.sda.poznan.controller;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -46,5 +45,38 @@ public class MainWindowController {
             alert.setContentText("File doesn't exist. Choose correct file");
             alert.showAndWait();
         }
+    }
+
+    public void saveToFile(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
+
+        String text = resultTextArea.getText();
+
+        try (PrintWriter pw = new PrintWriter(file)) {
+            pw.print(text);
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setContentText("Saving to file succesfull");
+            alert.showAndWait();
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setContentText("Error. Try with other file name.");
+            e.printStackTrace();
+        }
+
+        //inny sposob
+//        try {
+//            Files.write(Paths.get(file.getAbsolutePath()), text.getBytes());
+//
+//            Alert alert = new Alert(AlertType.INFORMATION);
+//            alert.setContentText("Saving to file succesfull");
+//            alert.showAndWait();
+//
+//        } catch (IOException e) {
+//            Alert alert = new Alert(AlertType.ERROR);
+//            alert.setContentText("Error. Try with other file name.");
+//            e.printStackTrace();
+//        }
     }
 }
